@@ -1,0 +1,57 @@
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+
+  redis:
+    host: localhost
+    port : 6379
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3307/board
+    username: root
+    password: test1234
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    show_sql: true
+  servlet:
+    multipart:
+      max-file-size: 1000MB
+      max-request-size: 1000MB
+
+# aws s3 접근하기 위한 계정 세팅
+cloud:
+  aws:
+    credentials:
+      access-key: AKIA3IOEQ3EZPA4SF4VB
+      secret-key: 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
+    region:
+      static: ap-northeast-2
+    s3:
+      bucket: gangsan-board-bucket
+
+jwt:
+  expirationAt: 1000 # 1000분
+  # 인코딩된 문자 32자 이상 필요. (특수문자 X)
+  # beyondaccesstokensecretkeybeyondaccesstokensecretkeybeyondaccesstokensecretkey
+  secretKeyAt:  YmV5b25kYWNjZXNzdG9rZW5zZWNyZXRrZXliZXlvbmRhY2Nlc3N0b2tlbnNlY3JldGtleWJleW9uZGFjY2Vzc3Rva2Vuc2VjcmV0a2V5
+  expirationRt: 10000 # 10000분
+  # 원래 아래 시크릿키 달라야 됨
+  secretKeyRt:  YmV5b25kYWNjZXNzdG9rZW5zZWNyZXRrZXliZXlvbmRhY2Nlc3N0b2tlbnNlY3JldGtleWJleW9uZGFjY2Vzc3Rva2Vuc2VjcmV0a2V5
+
+logging:
+  level:
+    root: info
